@@ -5,8 +5,7 @@ def total_salary(path):
     total = 0
     count = 0
 
-    current_dir = Path(__file__).parent
-    file_path = current_dir / "Department_payroll.txt"
+    file_path = Path(path)
     
     try:
         with open(file_path, "r", encoding="utf-8") as file:
@@ -27,7 +26,10 @@ def total_salary(path):
     except FileNotFoundError:
         print(f"Error: File <<Department_payroll.txt>> not found in the system")
         return 0, 0
+    
+current_dir = Path(__file__).parent
+target_file_path = current_dir / "Department_payroll.txt"
 
 
-total, average = total_salary("Department_payroll.txt",)
+total, average = total_salary(target_file_path)
 print(f"Total salary amount: {total}. Average salary: {average}")

@@ -2,11 +2,12 @@ from pathlib import Path
 
 
 def get_cats_info(path):
-    current_dir = Path(__file__).parent
-    file_path = current_dir / "Clinic_database_cat.txt"
+ 
     cats_base = []
 
     try:
+        file_path = Path(path)
+
         with open(file_path, "r", encoding="utf-8") as file:
             for line in file:
                 line = line.strip()
@@ -25,8 +26,12 @@ def get_cats_info(path):
 
     except FileNotFoundError:
         print(f"Error: File <<Clinic_database_cat.txt>> not found in the system")
-        return 0, 0
+        return []
 
-cats_info = get_cats_info("path/to/cats_file.txt")
+current_dir = Path(__file__).parent
+file_path = current_dir / "Clinic_database_cat.txt"
+
+cats_info = get_cats_info(file_path)
+
 for cat in cats_info:
     print(f"id: {cat['id']}, name: {cat['name']}, age: {cat['age']}")
